@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exploring Mars</title>
+    <style>
+        body {
+            height: 100%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-blend-mode: darken;
+        }
+
+        * {
+           box-sizing: border-box;
+        }
+        h1 {
+           text-align: center;
+        }
+        .outer-grid {
+           display: flex;
+           flex-wrap: wrap;
+           padding: 0 4px;
+        }
+        .inner-grid {
+           flex: 25%;
+           max-width: 25%;
+           padding: 0 4px;
+        }
+        .inner-grid img {
+           margin-top: 8px;
+           width: 300px;
+           height: 300px;
+           padding: 10px;
+        }
+        @media screen and (max-width: 800px) {
+           .inner-grid {
+              flex: 50%;
+              max-width: 50%;
+           }
+        }
+        @media screen and (max-width: 600px) {
+           .inner-grid {
+              flex: 100%;
+              max-width: 100%;
+           }
+        }
+        .imgBorder {
+              padding: 15px 15px 0;
+              background-color: white;
+              border-radius: 20px;
+              box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+              -moz-box-shadow: 0 1px 2px rgba(34,25,25,0.4);
+              -webkit-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+       }
+       .notes_ffs {
+            color: white;
+            font-size: 22px;
+       }
+       .form_find_photos {
+       text-align: center;
+       margin-top: 3%;
+       margin-bottom: 3%;
+       }
+    </style>
+</head>
+<body background="{{ url_for('static', filename='background.jpg') }}">
+    <div style="text-align: center; font-size: 32px;"><i class="notes_ffs" ><b style="font-size: 32px;">{{ DATE1 }} "Curiousity" unmanned rover's Mars photos</b></i></div>
+    <form class="form_find_photos" action="{{ url_for('index') }}" method="POST">
+        <i class="notes_ffs">Date</i>
+        <input type="text" class="type_date" name="date_of_photos" placeholder="YYYY.MM.DD">
+        <i class="notes_ffs">Camera</i>
+        <select  tabindex="0" class="select_camera" name="select_camera_type">
+                <option id="ANY" value="ANY" class="Any_camera">Any</option>
+                <option id="FHAZ" value="FHAZ" class="camera_option">FHAZ</option>
+                <option id="NAVCAM" value="NAVCAM" class="camera_option">NAVCAM</option>
+                <option id="PANCAM" value="PANCAM" class="camera_option">PANCAM</option>
+                <option id="MINITES" value="MINITES" class="camera_option">MINITES</option>
+                <option id="ENTRY" value="ENTRY" class="camera_option">ENTRY</option>
+                <option id="RHAZ" value="RHAZ" class="camera_option">RHAZ</option>
+
+        </select>
+
+        <button class="button_find_photos" type="submit">Find Photos</button>
+
+    </form>
+    <div class="outer-grid">
+        <div class="inner-grid">
+            <img class="imgBorder" src="{% if TABLE1[0] in TABLE1 %} {{ TABLE1[0][0] }} {% endif %}" alt="No photo:("/>
+            <img class="imgBorder" src="{% if TABLE1[1] in TABLE1 %} {{ TABLE1[1][0] }} {% endif %}" alt="No photo:("/>
+            <img class="imgBorder" src="{% if TABLE1[2] in TABLE1 %} {{ TABLE1[2][0] }} {% endif %}" alt="No photo:("/>
+        </div>
+        <div class="inner-grid">
+            <img class="imgBorder" src="{% if TABLE1[3] in TABLE1 %} {{ TABLE1[3][0] }} {% endif %}" alt="No photo:("/>
+            <img class="imgBorder" src="{% if TABLE1[4] in TABLE1 %} {{ TABLE1[4][0] }} {% endif %}" alt="No photo:("/>
+            <img class="imgBorder" src="{% if TABLE1[5] in TABLE1 %} {{ TABLE1[5][0] }} {% endif %}" alt="No photo:("/>
+        </div>
+        <div class="inner-grid">
+            <img class="imgBorder" src="{% if TABLE1[6] in TABLE1 %} {{ TABLE1[6][0] }} {% endif %}" alt="No photo:("/>
+            <img class="imgBorder" src="{% if TABLE1[7] in TABLE1 %} {{ TABLE1[7][0] }} {% endif %}" alt="No photo:("/>
+            <img class="imgBorder" src="{% if TABLE1[8] in TABLE1 %} {{ TABLE1[8][0] }} {% endif %}" alt="No photo:("/>
+        </div>
+        <div class="inner-grid">
+            <img class="imgBorder" src="{% if TABLE1[9] in TABLE1 %} {{ TABLE1[9][0] }} {% endif %}" alt="No photo:("/>
+            <img class="imgBorder" src="{% if TABLE1[10] in TABLE1 %} {{ TABLE1[10][0] }} {% endif %}" alt="No photo:("/>
+            <img class="imgBorder" src="{% if TABLE1[11] in TABLE1 %} {{ TABLE1[11][0] }} {% endif %}" alt="No photo:("/>
+        </div>
+        </div>
+</body>
+</html>
